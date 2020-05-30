@@ -32,6 +32,7 @@ body {
     url('../img/hero.jpg');
   background-size: cover; /* will always try and fit background inside the element*/
   background-position: top; /* ensures background image always starts on top of element*/
+  position: relative;
 
   clip-path: 
     /* sets 4 coordinates to determine visibility of element using 4 xy points */
@@ -41,4 +42,44 @@ body {
       100% 75vh, /* sets 3rd point 100% right and 75% down from y axis */
       0 100% /* sets 4th point 0x, 100% Y for bottom left */
     )
+}
+
+.logo-box {
+  position: absolute;
+  /* top and left need parent element to be relative to use as a reference */
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+.text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%); /* 40% compensates for wedge */
+    /* the transform shifts based on the element itself rather than parent. 
+    * the 50/50% ensures the new "center" is not top left of element, but now actual center
+    */
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.heading-primary-main {
+  display: block; /* use as block-level to take up whoel width and line break before/after */
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+}
+
+.heading-primary-sub {
+  display: block; /* use as block-level to take up whoel width and line break before/after */
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
 }
