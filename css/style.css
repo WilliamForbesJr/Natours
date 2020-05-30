@@ -19,4 +19,17 @@ body {
   font-size: 16px;
   line-height: 1.7;
   color: #777;
+  padding: 30px; /* gives gentle padding around body */
+}
+
+.header {
+  height: 95vh; /* covers 95% of viewport height*/
+  background-image: 
+      /* using gradient before url will stack both images on top of each other */
+    linear-gradient(to right bottom,
+      #7ed56fc0, #28b485bb
+    ), 
+    url('../img/hero.jpg');
+  background-size: cover; /* will always try and fit background inside the element*/
+  background-position: top; /* ensures background image always starts on top of element*/
 }
