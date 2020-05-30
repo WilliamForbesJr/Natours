@@ -32,4 +32,13 @@ body {
     url('../img/hero.jpg');
   background-size: cover; /* will always try and fit background inside the element*/
   background-position: top; /* ensures background image always starts on top of element*/
+
+  clip-path: 
+    /* sets 4 coordinates to determine visibility of element using 4 xy points */
+    polygon(
+      0 0, /* top left: 0,0 because we don't want to move that coord. it should stay the same */
+      100% 0, /* this sets second point all the way to right from first point 100,0 */
+      100% 75vh, /* sets 3rd point 100% right and 75% down from y axis */
+      0 100% /* sets 4th point 0x, 100% Y for bottom left */
+    )
 }
