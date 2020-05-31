@@ -59,6 +59,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
+  text-align: center;
   transform: translate(-50%, -40%); /* 40% compensates for wedge */
     /* the transform shifts based on the element itself rather than parent. 
     * the 50/50% ensures the new "center" is not top left of element, but now actual center
@@ -68,6 +69,7 @@ body {
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+  margin-bottom: 60px;
 
   backface-visibility: hidden; /* fixes shakey animation issue */
 }
@@ -123,4 +125,29 @@ body {
     opacity: 1;
     transform: translate(0);
   }
+}
+/* link pseudo class to style buttons under special conditions */
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+
+}
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
