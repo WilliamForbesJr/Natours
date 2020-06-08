@@ -1,6 +1,11 @@
+
+// COLOR VARIABLES
+// Primary
 $color-primary: #55c57a;
 $color-primary-light: #7ed56f;
 $color-primary-dark: #28b485;
+// Etc
+$color-black: #000;
 
 *,
 *::after,
@@ -11,7 +16,7 @@ $color-primary-dark: #28b485;
 }
 
 html {
-  font-size: 62.5%; /* sets base font for rem sizes 1 rem = 10px. makes easy to divide pixels*/
+  font-size: 62.5%; // sets base font for rem sizes 1 rem = 10px. makes easy to divide pixels
 }
 
 body {
@@ -25,78 +30,83 @@ body {
 }
 
 .header {
-  height: 95vh; /* covers 95% of viewport height*/
+  height: 95vh; // covers 95% of viewport height
   background-image: 
-      /* using gradient before url will stack both images on top of each other */
+      // using gradient before url will stack both images on top of each other
     linear-gradient(to right bottom,
       rgba($color-primary-light, 0.8), 
       rgba($color-primary-dark, 0.8)
     ), 
     url('../img/hero.jpg');
-  background-size: cover; /* will always try and fit background inside the element*/
-  background-position: top; /* ensures background image always starts on top of element*/
+  background-size: cover;   // will always try and fit background inside the element
+  background-position: top; // ensures background image always starts on top of element
   position: relative;
 
   clip-path: 
-    /* sets 4 coordinates to determine visibility of element using 4 xy points */
+    // sets 4 coordinates to determine visibility of element using 4 xy points
     polygon(
-      0 0, /* top left: 0,0 because we don't want to move that coord. it should stay the same */
-      100% 0, /* this sets second point all the way to right from first point 100,0 */
-      100% 75vh, /* sets 3rd point 100% right and 75% down from y axis */
-      0 100% /* sets 4th point 0x, 100% Y for bottom left */
+      0 0,        /* top left: 0,0 we don't want to move that coord. should stay the same */
+      100% 0,     /* second point all the way to right from first point 100,0 */
+      100% 75vh,  /* sets 3rd point 100% right and 75% down from y axis */
+      0 100%      /* sets 4th point 0x, 100% Y for bottom left */
     )
+
+    &__logo-box {
+      position: absolute; //top and left need parent element to be relative to use as a reference
+      top: 4rem;
+      left: 4rem;
+    }
+
+    &__logo {
+      height: 35px;
+    }
+    
+    &__text-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%, -40%); // 40% compensates for wedge
+        /* the transform shifts based on the element itself rather than parent. 
+        * the 50/50% ensures the new "center" is not top left of element, but now actual center
+        */
+    }
 }
 
-.header__logo-box {
-  position: absolute;
-  /* top and left need parent element to be relative to use as a reference */
-  top: 4rem;
-  left: 4rem;
-}
 
-.header__logo {
-  height: 35px;
-}
 
-.header__text-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  transform: translate(-50%, -40%); /* 40% compensates for wedge */
-    /* the transform shifts based on the element itself rather than parent. 
-    * the 50/50% ensures the new "center" is not top left of element, but now actual center
-    */
-}
+
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
   margin-bottom: 6rem;
 
-  backface-visibility: hidden; /* fixes shakey animation issue */
+  backface-visibility: hidden; // fixes shakey animation issue 
+
+  &--main {
+    display: block; // use as block-level to take up whoel width and line break before/after
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+  
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+      //animation-iteration-count: 3; repeats animation repeatedly
+  }
+  
+  &--sub {
+    display: block; // use as block-level to take up whoel width and line break before/after
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+  
+    animation: moveInRight 1s ease-out;
+  }
 }
 
-.heading-primary--main {
-  display: block; /* use as block-level to take up whoel width and line break before/after */
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
 
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  /* animation-iteration-count: 3; repeats animation repeatedly*/
-}
-
-.heading-primary--sub {
-  display: block; /* use as block-level to take up whoel width and line break before/after */
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-
-  animation: moveInRight 1s ease-out;
-}
 
 @keyframes moveInLeft {
   0% {
@@ -142,56 +152,58 @@ body {
   }
 }
 /* link pseudo class to style buttons under special conditions */
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block;
-  border-radius: 10rem;
-  transition: all .2s;
-  position: relative;
-  font-size: 1.6rem;
-}
+.btn{
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: 1.6rem;
+  }
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
-}
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba($color-black, 0.2);
+  }
 
-.btn:active {
-  transform: translateY(-1px);
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+  &--white {
+    background-color: #fff;
+    color: #777;
 
-}
-.btn--white {
-  background-color: #fff;
-  color: #777;
-}
-
-.btn::after {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  transition: all .4s;
-}
-
-.btn--white::after {
-  background-color:#fff;
-}
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn--animated {
-  animation: moveInButton .5s ease-out .75;
-  animation-fill-mode: backwards;
+    &::after {
+      background-color:#fff;
+    }
+  }
+  
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+  }
+  
+  &--animated {
+    animation: moveInButton .5s ease-out .75;
+    animation-fill-mode: backwards;
+  }
 }
