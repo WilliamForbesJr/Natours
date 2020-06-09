@@ -19,7 +19,7 @@
       100% 0,     /* second point all the way to right from first point 100,0 */
       100% 75vh,  /* sets 3rd point 100% right and 75% down from y axis */
       0 100%      /* sets 4th point 0x, 100% Y for bottom left */
-    )
+    );
 
     &__logo-box {
       position: absolute; //top and left need parent element to be relative to use as a reference
